@@ -59,7 +59,7 @@ namespace Analogy.LogViewer.GitHistory
                                 Module = rs.RepositoryPath,
                                 Source = c.Id.Sha,
                                 Text = $"{(c.Parents.Any() ? $"{c.Message} Merge: {string.Join(" ", c.Parents.Select(p => p.Id.Sha.Substring(0, 7)).ToArray())}" : c.Message)}",
-                                User = $"Commited by: {c.Committer.Name} ({c.Committer.Email}). Author: { c.Author.Name } ({ c.Author.Email })",
+                                User = $"Committer: {c.Committer.Name} ({c.Committer.Email}). Author: { c.Author.Name } ({ c.Author.Email })",
                                 FileName = c.Id.Sha,
                                 Category = c.Tree.FirstOrDefault()?.Name,
                                 Level = AnalogyLogLevel.Event,
