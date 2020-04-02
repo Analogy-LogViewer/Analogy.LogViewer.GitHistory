@@ -21,4 +21,6 @@
 
 
 
-Display git history in Analogy Log Viewer
+Display git history or your local repository in Analogy Log Viewer
+
+![Main screen](Assets/Analogy.GitHistory.jpg)
