@@ -62,7 +62,14 @@ namespace Analogy.LogViewer.GitHistory
             return Equals((RepositorySetting)obj);
         }
 
-        public override int GetHashCode() => HashCode.Combine(RepositoryPath, NumberOfCommits, HistoryDateTime, (int)FetchType);
+        public override int GetHashCode()
+        {
+#if NETCOREAPP3_1
+            return HashCode.Combine(RepositoryPath, NumberOfCommits, HistoryDateTime, (int) FetchType);
+#else
+            return (RepositoryPath.GetHashCode() * 379) + (NumberOfCommits) + (HistoryDateTime.GetHashCode() * 379);
+#endif
+        }
 
         public override string ToString() => $"{nameof(RepositoryPath)}: {RepositoryPath}, {nameof(NumberOfCommits)}: {NumberOfCommits}, {nameof(HistoryDateTime)}: {HistoryDateTime}, {nameof(FetchType)}: {FetchType}";
     }
