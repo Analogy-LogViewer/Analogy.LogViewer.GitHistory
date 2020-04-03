@@ -10,6 +10,13 @@ namespace Analogy.LogViewer.GitHistory
 {
     public class GitRepositoryLoader : IAnalogyRealTimeDataProvider
     {
+        private  RepositorySetting RepositorySetting { get; }
+
+        public GitRepositoryLoader(RepositorySetting rs)
+        {
+            RepositorySetting = rs;
+        }
+
         public Task InitializeDataProviderAsync(IAnalogyLogger logger)
         {
             LogManager.Instance.SetLogger(logger);
@@ -22,61 +29,54 @@ namespace Analogy.LogViewer.GitHistory
         }
 
         public Guid ID { get; } = new Guid("407C8AD7-E7A3-4B36-9221-BB5D48E78766");
-        public string OptionalTitle { get; } = string.Empty;
+        public string OptionalTitle  => RepositorySetting.RepositoryPath;
         public Task<bool> CanStartReceiving() => Task.FromResult(true);
 
         public void StartReceiving()
         {
-            if (!UserSettingsManager.UserSettings.RepositoriesSetting.Repositories.Any())
+            try
             {
-                AnalogyLogMessage m = new AnalogyLogMessage("No Repositories exist to query", AnalogyLogLevel.Error, AnalogyLogClass.General, "");
-                OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", ID));
-                return;
-            }
 
-            foreach (RepositorySetting rs in UserSettingsManager.UserSettings.RepositoriesSetting.Repositories)
-            {
-                try
+                using (var repo = new Repository(RepositorySetting.RepositoryPath))
                 {
+                    var RFC2822Format = "ddd dd MMM HH:mm:ss yyyy K";
 
-                    using (var repo = new Repository(rs.RepositoryPath))
+                    IEnumerable<Commit> commits;
+                    if (RepositorySetting.FetchType == FetchType.Count)
+                        commits = repo.Commits.Take(RepositorySetting.NumberOfCommits);
+                    else if (RepositorySetting.FetchType == FetchType.DateTime)
+                        commits = repo.Commits.Where(c => c.Author.When >= RepositorySetting.HistoryDateTime);
+                    else
+                        commits = new List<Commit>(0);
+
+                    foreach (Commit c in commits)
                     {
-                        var RFC2822Format = "ddd dd MMM HH:mm:ss yyyy K";
-
-                        IEnumerable<Commit> commits;
-                        if (rs.FetchType == FetchType.Count)
-                            commits = repo.Commits.Take(rs.NumberOfCommits);
-                        else if (rs.FetchType == FetchType.DateTime)
-                            commits = repo.Commits.Where(c => c.Author.When >= rs.HistoryDateTime);
-                        else
-                            commits = new List<Commit>(0);
-
-                        foreach (Commit c in commits)
+                        AnalogyLogMessage m = new AnalogyLogMessage
                         {
-                            AnalogyLogMessage m = new AnalogyLogMessage
-                            {
-                                Date = c.Author.When.DateTime,
-                                Module = rs.RepositoryPath,
-                                Source = c.Id.Sha,
-                                Text = $"{(c.Parents.Any() ? $"{c.Message} Merge: {string.Join(" ", c.Parents.Select(p => p.Id.Sha.Substring(0, 7)).ToArray())}" : c.Message)}",
-                                User = $"Committer: {c.Committer.Name} ({c.Committer.Email}). Author: { c.Author.Name } ({ c.Author.Email })",
-                                FileName = c.Id.Sha,
-                                Category = c.Tree.FirstOrDefault()?.Name,
-                                Level = AnalogyLogLevel.Event,
-                                Class = AnalogyLogClass.General
-                            };
-                            OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", ID));
+                            Date = c.Author.When.DateTime,
+                            Module = RepositorySetting.RepositoryPath,
+                            Source = c.Id.Sha,
+                            Text =
+                                $"{(c.Parents.Any() ? $"{c.Message} Merge: {string.Join(" ", c.Parents.Select(p => p.Id.Sha.Substring(0, 7)).ToArray())}" : c.Message)}",
+                            User =
+                                $"Committer: {c.Committer.Name} ({c.Committer.Email}). Author: {c.Author.Name} ({c.Author.Email})",
+                            FileName = c.Id.Sha,
+                            Category = c.Tree.FirstOrDefault()?.Name,
+                            Level = AnalogyLogLevel.Event,
+                            Class = AnalogyLogClass.General
+                        };
+                        OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", ID));
 
-                        }
                     }
                 }
-                catch (Exception e)
-                {
-                    LogManager.Instance.LogError(nameof(StartReceiving), $@"Error reading {rs.RepositoryPath}: {e}");
-                }
-
             }
+            catch (Exception e)
+            {
+                LogManager.Instance.LogError(nameof(StartReceiving), $@"Error reading {RepositorySetting.RepositoryPath}: {e}");
+            }
+
         }
+
 
         public void StopReceiving()
         {

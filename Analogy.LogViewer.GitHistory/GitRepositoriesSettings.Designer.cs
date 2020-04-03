@@ -38,6 +38,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnBrowser = new System.Windows.Forms.Button();
             this.BtnDelete = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudCommits)).BeginInit();
             this.SuspendLayout();
             // 
@@ -118,7 +119,7 @@
             this.lstRepositores.ItemHeight = 18;
             this.lstRepositores.Location = new System.Drawing.Point(11, 144);
             this.lstRepositores.Name = "lstRepositores";
-            this.lstRepositores.Size = new System.Drawing.Size(615, 238);
+            this.lstRepositores.Size = new System.Drawing.Size(615, 184);
             this.lstRepositores.TabIndex = 23;
             // 
             // btnAdd
@@ -154,10 +155,25 @@
             this.BtnDelete.UseVisualStyleBackColor = true;
             this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(8, 331);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(682, 62);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "for changes to take effect (when adding/removing repository) please restart the a" +
+    "pplication";
+            // 
             // GitRepositoriesSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.BtnDelete);
             this.Controls.Add(this.btnBrowser);
             this.Controls.Add(this.btnAdd);
@@ -190,5 +206,6 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnBrowser;
         private System.Windows.Forms.Button BtnDelete;
+        private System.Windows.Forms.Label label1;
     }
 }
