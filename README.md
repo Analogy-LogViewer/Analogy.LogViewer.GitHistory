@@ -1,4 +1,4 @@
-# Analogy.LogViewer.GitHistory
+# Analogy.LogViewer.GitHistory <img src="./Assets/Analogy.GitHistoryBanner.png" align="right" width="155px" height="155px">
 
 
 <p align="center">
