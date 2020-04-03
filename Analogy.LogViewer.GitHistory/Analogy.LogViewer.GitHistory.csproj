@@ -4,6 +4,9 @@
     <OutputType>Library</OutputType>
     <TargetFrameworks>net472;netcoreapp3.1</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <Authors>Lior Banai</Authors>
     <Description>Extension for Analogy Log Viewer that shows Git Histroy in searchable UI</Description>
     <Copyright>Copyright @ Lior Banai 2020</Copyright>
