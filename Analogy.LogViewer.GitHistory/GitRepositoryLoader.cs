@@ -97,12 +97,12 @@ namespace Analogy.LogViewer.GitHistory
                         Module = RepositorySetting.RepositoryPath,
                         Source = c.Id.Sha,
                         Text =
-                            $"{(c.Parents.Any() ? $"{c.Message} Merge: {string.Join(" ", c.Parents.Select(p => p.Id.Sha.Substring(0, 7)).ToArray())}" : c.Message)}",
+                            $"{(c.Parents.Any() ? $"{c.Message} Merge: {string.Join(" ", c.Parents.Select(p => p.Id.Sha.Substring(0, 7)).ToArray())}" : c.Message)}" + $" (Committer: {c.Committer.Name})",
                         User =
                             $"Committer: {c.Committer.Name} ({c.Committer.Email}). Author: {c.Author.Name} ({c.Author.Email})",
                         FileName = c.Id.Sha,
                         Category = c.Tree.FirstOrDefault()?.Name,
-                        Level = AnalogyLogLevel.Event, 
+                        Level =(c.Committer.Name== c.Author.Name)? AnalogyLogLevel.Event:AnalogyLogLevel.Warning, 
                         Class = AnalogyLogClass.General
                     };
                     OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", ID));
