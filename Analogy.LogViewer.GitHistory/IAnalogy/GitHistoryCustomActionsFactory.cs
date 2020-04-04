@@ -13,6 +13,6 @@ namespace Analogy.LogViewer.GitHistory.IAnalogy
     {
         public Guid FactoryId { get; } = GitHistoryFactory.Id;
         public string Title { get; } = "Git Operations";
-        public IEnumerable<IAnalogyCustomAction> Actions { get; }=new List<IAnalogyCustomAction>{new GitPullAction()};
+        public IEnumerable<IAnalogyCustomAction> Actions { get; }=new List<IAnalogyCustomAction>{new GitFetchAction()};
     }
 }

@@ -8,7 +8,7 @@ using Analogy.Interfaces;
 
 namespace Analogy.LogViewer.GitHistory.GitActions
 {
-    public class GitPullAction: IAnalogyCustomAction
+    public class GitFetchAction: IAnalogyCustomAction
     {
         public Action Action { get; }= ()=>
         {
@@ -16,7 +16,7 @@ namespace Analogy.LogViewer.GitHistory.GitActions
             f.ShowDialog(Application.OpenForms[0]);
         };
         public Guid ID { get; } = new Guid("FD8E1ED1-20DA-4783-87EC-9FAC66422CC1");
-        public string Title { get; } = "Git Pull";
+        public string Title { get; } = "Git Fetch";
 
 
     }
