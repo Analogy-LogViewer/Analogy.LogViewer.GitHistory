@@ -26,3 +26,6 @@
 Display git history or your local repository in Analogy Log Viewer
 
 ![Main screen](Assets/Analogy.GitHistory.jpg)
+
+With GitHistory you can see all your team commits and have some statistics such as when during the day most of the commits are done:
+![Commit statistics](Assets/gitHistoryDataVisualizer.jpg)
