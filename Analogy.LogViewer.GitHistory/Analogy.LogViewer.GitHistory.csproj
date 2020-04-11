@@ -17,6 +17,7 @@
     <PackageReleaseNotes>Initial POC</PackageReleaseNotes>
     <PackageIcon>Analogy.GitHistoryBanner.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
