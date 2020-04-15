@@ -3,6 +3,7 @@ using Analogy.LogViewer.GitHistory.Managers;
 using LibGit2Sharp;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using Analogy.LogViewer.GitHistory.Data_Types;
@@ -11,7 +12,6 @@ namespace Analogy.LogViewer.GitHistory
 {
     public class GitRepositoryLoader : IAnalogyRealTimeDataProvider
     {
-
         public Guid ID { get; } = new Guid("407C8AD7-E7A3-4B36-9221-BB5D48E78766");
         public string OptionalTitle => RepositorySetting.RepositoryPath;
         public Task<bool> CanStartReceiving() => Task.FromResult(true);
@@ -22,6 +22,12 @@ namespace Analogy.LogViewer.GitHistory
         public event EventHandler<AnalogyLogMessagesArgs> OnManyMessagesReady;
         private  RepositorySetting RepositorySetting { get; }
         private GitOperationType Operation { get; }
+        public bool UseCustomColors { get; set; } = false;
+        public IEnumerable<(string originalHeader, string replacementHeader)> GetReplacementHeaders()
+            => Array.Empty<(string, string)>();
+
+        public (Color backgroundColor, Color foregroundColor) GetColorForMessage(IAnalogyLogMessage logMessage)
+            => (Color.Empty, Color.Empty);
         public GitRepositoryLoader(RepositorySetting rs, GitOperationType operation)
         {
             RepositorySetting = rs;
