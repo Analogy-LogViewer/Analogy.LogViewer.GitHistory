@@ -14,10 +14,10 @@
     <PackageProjectUrl>https://github.com/Analogy-LogViewer/Analogy.LogViewer.GitHistory</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Analogy-LogViewer/Analogy.LogViewer.GitHistory</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>Initial POC</PackageReleaseNotes>
+    <PackageReleaseNotes>Aligh with latest API</PackageReleaseNotes>
     <PackageIcon>Analogy.GitHistoryBanner.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <Company>Analogy.LogViewer</Company>
   </PropertyGroup>
 
