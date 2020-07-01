@@ -24,7 +24,7 @@ namespace Analogy.LogViewer.GitHistory.IAnalogy
 
         }
     }
-    public class GitFetchDataProviderFactory : IAnalogyDataProvidersFactory
+    public class GitFetchDataProviderFactory
     {
         public Guid FactoryId { get; } = GitHistoryFactory.Id;
         public string Title => "Repositories Fetches";
@@ -35,7 +35,7 @@ namespace Analogy.LogViewer.GitHistory.IAnalogy
             {
                 foreach (RepositorySetting rs in UserSettingsManager.UserSettings.RepositoriesSetting.Repositories)
                 {
-                    yield return new GitRepositoryLoader(rs,GitOperationType.Fetch);
+                    yield return new GitRepositoryLoader(rs, GitOperationType.Fetch);
                 }
             }
 
