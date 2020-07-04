@@ -12,11 +12,10 @@ namespace Analogy.LogViewer.GitHistory
 {
     public class GitRepositoryLoader : IAnalogyRealTimeDataProvider
     {
-        public Guid ID { get; } = new Guid("407C8AD7-E7A3-4B36-9221-BB5D48E78766");
+        public Guid ID { get; } = new Guid("3CD8B586-5AB0-4C84-A1F8-0F093F846A5D");
         public string OptionalTitle => RepositorySetting.RepositoryPath;
         public Task<bool> CanStartReceiving() => Task.FromResult(true);
         public IAnalogyOfflineDataProvider FileOperationsHandler { get; } = null;
-        public bool IsConnected { get; } = true;
         public event EventHandler<AnalogyDataSourceDisconnectedArgs> OnDisconnected;
         public event EventHandler<AnalogyLogMessageArgs> OnMessageReady;
         public event EventHandler<AnalogyLogMessagesArgs> OnManyMessagesReady;
