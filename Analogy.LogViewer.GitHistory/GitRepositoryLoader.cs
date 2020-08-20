@@ -23,7 +23,7 @@ namespace Analogy.LogViewer.GitHistory
         private GitOperationType Operation { get; }
         public bool UseCustomColors { get; set; } = false;
         public IEnumerable<(string originalHeader, string replacementHeader)> GetReplacementHeaders()
-            => Array.Empty<(string, string)>();
+            => new List<(string originalHeader, string replacementHeader)>{("Source","Branch"), ("Process/Module", "Local Path") };
 
         public (Color backgroundColor, Color foregroundColor) GetColorForMessage(IAnalogyLogMessage logMessage)
             => (Color.Empty, Color.Empty);
@@ -100,7 +100,7 @@ namespace Analogy.LogViewer.GitHistory
                     {
                         Date = c.Author.When.DateTime,
                         Module = RepositorySetting.RepositoryPath,
-                        Source = c.Id.Sha,
+                        Source = repo.Head.FriendlyName,
                         Text =
                             $"{(c.Parents.Any() ? $"{c.Message} Merge: {string.Join(" ", c.Parents.Select(p => p.Id.Sha.Substring(0, 7)).ToArray())}" : c.Message)}" + $" (Committer: {c.Committer.Name})",
                         User =
