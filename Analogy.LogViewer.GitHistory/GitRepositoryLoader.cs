@@ -19,11 +19,11 @@ namespace Analogy.LogViewer.GitHistory
         public event EventHandler<AnalogyDataSourceDisconnectedArgs> OnDisconnected;
         public event EventHandler<AnalogyLogMessageArgs> OnMessageReady;
         public event EventHandler<AnalogyLogMessagesArgs> OnManyMessagesReady;
-        private  RepositorySetting RepositorySetting { get; }
+        private RepositorySetting RepositorySetting { get; }
         private GitOperationType Operation { get; }
         public bool UseCustomColors { get; set; } = false;
         public IEnumerable<(string originalHeader, string replacementHeader)> GetReplacementHeaders()
-            => new List<(string originalHeader, string replacementHeader)>{("Source","Branch"), ("Process/Module", "Local Path") };
+            => new List<(string originalHeader, string replacementHeader)> { ("Source", "Branch"), ("Process/Module", "Local Path") };
 
         public (Color backgroundColor, Color foregroundColor) GetColorForMessage(IAnalogyLogMessage logMessage)
             => (Color.Empty, Color.Empty);
@@ -44,7 +44,7 @@ namespace Analogy.LogViewer.GitHistory
             //noop
         }
 
-        public void StartReceiving()
+        public Task StartReceiving()
         {
             try
             {
@@ -79,6 +79,7 @@ namespace Analogy.LogViewer.GitHistory
                 OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", ID));
 
             }
+            return Task.CompletedTask;
         }
 
         private void GetGitHistory()
@@ -107,7 +108,7 @@ namespace Analogy.LogViewer.GitHistory
                             $"Committer: {c.Committer.Name} ({c.Committer.Email}). Author: {c.Author.Name} ({c.Author.Email})",
                         FileName = c.Id.Sha,
                         Category = c.Tree.FirstOrDefault()?.Name,
-                        Level =(c.Committer.Name== c.Author.Name)? AnalogyLogLevel.Event:AnalogyLogLevel.Warning, 
+                        Level = (c.Committer.Name == c.Author.Name) ? AnalogyLogLevel.Event : AnalogyLogLevel.Warning,
                         Class = AnalogyLogClass.General
                     };
                     OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", ID));
@@ -127,7 +128,7 @@ namespace Analogy.LogViewer.GitHistory
 
                 var trackingBranch = repo.Head.TrackedBranch;
                 var commits = repo.Commits.QueryBy(new CommitFilter
-                    {IncludeReachableFrom = trackingBranch.Tip.Id, ExcludeReachableFrom = repo.Head.Tip.Id});
+                { IncludeReachableFrom = trackingBranch.Tip.Id, ExcludeReachableFrom = repo.Head.Tip.Id });
 
                 foreach (Commit c in commits)
                 {
@@ -149,10 +150,7 @@ namespace Analogy.LogViewer.GitHistory
                 }
             }
         }
-        public void StopReceiving()
-        {
-            //noop
-        }
+        public Task StopReceiving() => Task.CompletedTask;
 
     }
 }
