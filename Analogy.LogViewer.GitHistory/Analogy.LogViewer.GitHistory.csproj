@@ -9,7 +9,7 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<Authors>Lior Banai</Authors>
 		<Description>Extension for Analogy Log Viewer that shows Git Histroy in searchable UI</Description>
-		<Copyright>Copyright @ Lior Banai 2020</Copyright>
+		<Copyright>Lior Banai @ 2020</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/Analogy-LogViewer/Analogy.LogViewer.GitHistory</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Analogy-LogViewer/Analogy.LogViewer.GitHistory</RepositoryUrl>
@@ -17,10 +17,10 @@
 		<PackageReleaseNotes>Aligh with latest API</PackageReleaseNotes>
 		<PackageIcon>Analogy.GitHistoryBanner.png</PackageIcon>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Version>1.0.9</Version>
+		<Version>1.1.0</Version>
 		<Company>Analogy.LogViewer</Company>
-		<AssemblyVersion>1.0.9.0</AssemblyVersion>
-		<FileVersion>1.0.9.0</FileVersion>
+		<AssemblyVersion>1.1.0.0</AssemblyVersion>
+		<FileVersion>1.1.0.0</FileVersion>
 		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
 	</PropertyGroup>
 

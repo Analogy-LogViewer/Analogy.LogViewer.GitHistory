@@ -12,7 +12,11 @@ namespace Analogy.LogViewer.GitHistory
 {
     public class GitRepositoryLoader : IAnalogyRealTimeDataProvider
     {
-        public Guid ID { get; } = new Guid("3CD8B586-5AB0-4C84-A1F8-0F093F846A5D");
+        public Guid Id { get; } = new Guid("3CD8B586-5AB0-4C84-A1F8-0F093F846A5D");
+        public Image ConnectedLargeImage { get; } = null;
+        public Image ConnectedSmallImage { get; } = null;
+        public Image DisconnectedLargeImage { get; } = null;
+        public Image DisconnectedSmallImage { get; } = null;
         public string OptionalTitle => RepositorySetting.RepositoryPath;
         public Task<bool> CanStartReceiving() => Task.FromResult(true);
         public IAnalogyOfflineDataProvider FileOperationsHandler { get; } = null;
@@ -76,7 +80,7 @@ namespace Analogy.LogViewer.GitHistory
                     Level = AnalogyLogLevel.Error,
                     Class = AnalogyLogClass.General
                 };
-                OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", ID));
+                OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", Id));
 
             }
             return Task.CompletedTask;
@@ -111,7 +115,7 @@ namespace Analogy.LogViewer.GitHistory
                         Level = (c.Committer.Name == c.Author.Name) ? AnalogyLogLevel.Event : AnalogyLogLevel.Warning,
                         Class = AnalogyLogClass.General
                     };
-                    OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", ID));
+                    OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", Id));
 
                 }
             }
@@ -145,7 +149,7 @@ namespace Analogy.LogViewer.GitHistory
                         Level = AnalogyLogLevel.Event,
                         Class = AnalogyLogClass.General
                     };
-                    OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", ID));
+                    OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", Id));
 
                 }
             }
