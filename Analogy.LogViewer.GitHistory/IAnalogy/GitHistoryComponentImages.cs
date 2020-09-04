@@ -1,15 +1,11 @@
-﻿using Analogy.DataProviders.Extensions;
-using Analogy.LogViewer.GitHistory.Properties;
+﻿using Analogy.LogViewer.GitHistory.Properties;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Analogy.Interfaces;
 
 namespace Analogy.LogViewer.GitHistory.IAnalogy
 {
-    public class GitHistoryComponentImages: IAnalogyComponentImages
+    public class GitHistoryComponentImages : IAnalogyComponentImages
     {
         public Image GetLargeImage(Guid analogyComponentId)
         {

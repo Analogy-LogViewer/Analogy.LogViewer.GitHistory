@@ -9,8 +9,8 @@ namespace Analogy.LogViewer.GitHistory.IAnalogy
 {
     public class GitHistoryDataProviderFactory : IAnalogyDataProvidersFactory
     {
-        public Guid FactoryId { get; } = GitHistoryFactory.Id;
-        public string Title => "Repositories History";
+        public Guid FactoryId { get; set; } = GitHistoryFactory.Id;
+        public string Title { get; set; } = "Repositories History";
 
         public IEnumerable<IAnalogyDataProvider> DataProviders
         {

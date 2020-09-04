@@ -12,12 +12,12 @@ namespace Analogy.LogViewer.GitHistory
 {
     public class GitRepositoryLoader : IAnalogyRealTimeDataProvider
     {
-        public Guid Id { get; } = new Guid("3CD8B586-5AB0-4C84-A1F8-0F093F846A5D");
-        public Image ConnectedLargeImage { get; } = null;
-        public Image ConnectedSmallImage { get; } = null;
-        public Image DisconnectedLargeImage { get; } = null;
-        public Image DisconnectedSmallImage { get; } = null;
-        public string OptionalTitle => RepositorySetting.RepositoryPath;
+        public Guid Id { get; set; } = new Guid("3CD8B586-5AB0-4C84-A1F8-0F093F846A5D");
+        public Image ConnectedLargeImage { get; set; } = null;
+        public Image ConnectedSmallImage { get; set; } = null;
+        public Image DisconnectedLargeImage { get; set; } = null;
+        public Image DisconnectedSmallImage { get; set; } = null;
+        public string OptionalTitle { get; set; }
         public Task<bool> CanStartReceiving() => Task.FromResult(true);
         public IAnalogyOfflineDataProvider FileOperationsHandler { get; } = null;
         public event EventHandler<AnalogyDataSourceDisconnectedArgs> OnDisconnected;
@@ -35,6 +35,7 @@ namespace Analogy.LogViewer.GitHistory
         {
             RepositorySetting = rs;
             Operation = operation;
+            OptionalTitle = RepositorySetting.RepositoryPath;
         }
 
         public Task InitializeDataProviderAsync(IAnalogyLogger logger)
