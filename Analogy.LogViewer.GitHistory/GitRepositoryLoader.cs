@@ -12,18 +12,22 @@ namespace Analogy.LogViewer.GitHistory
 {
     public class GitRepositoryLoader : IAnalogyRealTimeDataProvider
     {
-        public Guid ID { get; } = new Guid("3CD8B586-5AB0-4C84-A1F8-0F093F846A5D");
+        public Guid Id { get; } = new Guid("3CD8B586-5AB0-4C84-A1F8-0F093F846A5D");
+        public Image ConnectedLargeImage { get; } = null;
+        public Image ConnectedSmallImage { get; } = null;
+        public Image DisconnectedLargeImage { get; } = null;
+        public Image DisconnectedSmallImage { get; } = null;
         public string OptionalTitle => RepositorySetting.RepositoryPath;
         public Task<bool> CanStartReceiving() => Task.FromResult(true);
         public IAnalogyOfflineDataProvider FileOperationsHandler { get; } = null;
         public event EventHandler<AnalogyDataSourceDisconnectedArgs> OnDisconnected;
         public event EventHandler<AnalogyLogMessageArgs> OnMessageReady;
         public event EventHandler<AnalogyLogMessagesArgs> OnManyMessagesReady;
-        private  RepositorySetting RepositorySetting { get; }
+        private RepositorySetting RepositorySetting { get; }
         private GitOperationType Operation { get; }
         public bool UseCustomColors { get; set; } = false;
         public IEnumerable<(string originalHeader, string replacementHeader)> GetReplacementHeaders()
-            => new List<(string originalHeader, string replacementHeader)>{("Source","Branch"), ("Process/Module", "Local Path") };
+            => new List<(string originalHeader, string replacementHeader)> { ("Source", "Branch"), ("Process/Module", "Local Path") };
 
         public (Color backgroundColor, Color foregroundColor) GetColorForMessage(IAnalogyLogMessage logMessage)
             => (Color.Empty, Color.Empty);
@@ -44,7 +48,7 @@ namespace Analogy.LogViewer.GitHistory
             //noop
         }
 
-        public void StartReceiving()
+        public Task StartReceiving()
         {
             try
             {
@@ -76,9 +80,10 @@ namespace Analogy.LogViewer.GitHistory
                     Level = AnalogyLogLevel.Error,
                     Class = AnalogyLogClass.General
                 };
-                OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", ID));
+                OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", Id));
 
             }
+            return Task.CompletedTask;
         }
 
         private void GetGitHistory()
@@ -107,10 +112,10 @@ namespace Analogy.LogViewer.GitHistory
                             $"Committer: {c.Committer.Name} ({c.Committer.Email}). Author: {c.Author.Name} ({c.Author.Email})",
                         FileName = c.Id.Sha,
                         Category = c.Tree.FirstOrDefault()?.Name,
-                        Level =(c.Committer.Name== c.Author.Name)? AnalogyLogLevel.Event:AnalogyLogLevel.Warning, 
+                        Level = (c.Committer.Name == c.Author.Name) ? AnalogyLogLevel.Event : AnalogyLogLevel.Warning,
                         Class = AnalogyLogClass.General
                     };
-                    OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", ID));
+                    OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", Id));
 
                 }
             }
@@ -127,7 +132,7 @@ namespace Analogy.LogViewer.GitHistory
 
                 var trackingBranch = repo.Head.TrackedBranch;
                 var commits = repo.Commits.QueryBy(new CommitFilter
-                    {IncludeReachableFrom = trackingBranch.Tip.Id, ExcludeReachableFrom = repo.Head.Tip.Id});
+                { IncludeReachableFrom = trackingBranch.Tip.Id, ExcludeReachableFrom = repo.Head.Tip.Id });
 
                 foreach (Commit c in commits)
                 {
@@ -144,15 +149,12 @@ namespace Analogy.LogViewer.GitHistory
                         Level = AnalogyLogLevel.Event,
                         Class = AnalogyLogClass.General
                     };
-                    OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", ID));
+                    OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", Id));
 
                 }
             }
         }
-        public void StopReceiving()
-        {
-            //noop
-        }
+        public Task StopReceiving() => Task.CompletedTask;
 
     }
 }
