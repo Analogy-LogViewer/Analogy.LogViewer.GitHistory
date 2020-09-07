@@ -2,6 +2,8 @@
 using Analogy.Interfaces.Factories;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using Analogy.LogViewer.GitHistory.Properties;
 
 namespace Analogy.LogViewer.GitHistory.IAnalogy
 {
@@ -11,6 +13,8 @@ namespace Analogy.LogViewer.GitHistory.IAnalogy
         public Guid FactoryId { get; set; } = Id;
 
         public string Title { get; set; } = "Git History";
+        public Image SmallImage { get; set; } = Resources.Git_icon_16x16;
+        public Image LargeImage { get; set; } = Resources.Git_icon_32x32;
         public IEnumerable<IAnalogyChangeLog> ChangeLog { get; set; } = new List<AnalogyChangeLog>
         {
             new AnalogyChangeLog("Initial version",AnalogChangeLogType.None, "Lior Banai",new DateTime(2020, 04, 02))
