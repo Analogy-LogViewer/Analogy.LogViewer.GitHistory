@@ -71,8 +71,7 @@ namespace Analogy.LogViewer.GitHistory
             }
             catch (Exception e)
             {
-                LogManager.Instance.LogError(nameof(StartReceiving),
-                    $@"Error reading {RepositorySetting.RepositoryPath}: {e}");
+                LogManager.Instance.LogError($@"Error reading {RepositorySetting.RepositoryPath}: {e}", nameof(StartReceiving));
                 AnalogyLogMessage m = new AnalogyLogMessage
                 {
                     Date = DateTime.Now,
@@ -113,7 +112,7 @@ namespace Analogy.LogViewer.GitHistory
                             $"Committer: {c.Committer.Name} ({c.Committer.Email}). Author: {c.Author.Name} ({c.Author.Email})",
                         FileName = c.Id.Sha,
                         Category = c.Tree.FirstOrDefault()?.Name,
-                        Level = (c.Committer.Name == c.Author.Name) ? AnalogyLogLevel.Event : AnalogyLogLevel.Warning,
+                        Level = (c.Committer.Name == c.Author.Name) ? AnalogyLogLevel.Information : AnalogyLogLevel.Warning,
                         Class = AnalogyLogClass.General
                     };
                     OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", Id));
@@ -147,7 +146,7 @@ namespace Analogy.LogViewer.GitHistory
                             $"Committer: {c.Committer.Name} ({c.Committer.Email}). Author: {c.Author.Name} ({c.Author.Email})",
                         FileName = c.Id.Sha,
                         Category = c.Tree.FirstOrDefault()?.Name,
-                        Level = AnalogyLogLevel.Event,
+                        Level = AnalogyLogLevel.Information,
                         Class = AnalogyLogClass.General
                     };
                     OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", Id));
