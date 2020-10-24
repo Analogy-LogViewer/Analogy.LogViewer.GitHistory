@@ -10,6 +10,7 @@ namespace Analogy.LogViewer.GitHistory.IAnalogy
     public class GitHistoryFactory : IAnalogyFactory
     {
         internal static Guid Id = new Guid("B842CC0F-AD83-48FB-8394-3189F9A75024");
+    
         public Guid FactoryId { get; set; } = Id;
 
         public string Title { get; set; } = "Git History";
@@ -21,5 +22,10 @@ namespace Analogy.LogViewer.GitHistory.IAnalogy
         };
         public IEnumerable<string> Contributors { get; set; } = new List<string> { "Lior Banai" };
         public string About { get; set; } = "Analogy Git History";
+
+        public void RegisterNotificationCallback(INotificationReporter notificationReporter)
+        {
+           
+        }
     }
 }
