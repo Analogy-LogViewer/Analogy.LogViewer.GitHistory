@@ -15,7 +15,7 @@ namespace Analogy.LogViewer.GitHistory.IAnalogy
         protected override string RepositoryURL { get; set; } = "https://api.github.com/repos/Analogy-LogViewer/Analogy.LogViewer.GitHistory";
         public override TargetFrameworkAttribute CurrentFrameworkAttribute { get; set; } = (TargetFrameworkAttribute)Assembly.GetExecutingAssembly().GetCustomAttribute(typeof(TargetFrameworkAttribute));
 
-        public override Guid FactoryId { get; set; } = GitHistoryFactory.Id;
+        public override Guid FactoryId { get; set; } = GitHistoryPrimaryFactory.Id;
         public override string Name { get; set; } = "Affirmations Data Provider";
 
         private string? _installedVersionNumber;

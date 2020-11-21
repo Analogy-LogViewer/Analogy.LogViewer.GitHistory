@@ -11,7 +11,7 @@ namespace Analogy.LogViewer.GitHistory.IAnalogy
 {
     public class GitHistoryCustomActionsFactory
     {
-        public Guid FactoryId { get; } = GitHistoryFactory.Id;
+        public Guid FactoryId { get; } = GitHistoryPrimaryFactory.Id;
         public string Title { get; } = "Git Operations";
         public IEnumerable<IAnalogyCustomAction> Actions { get; } = new List<IAnalogyCustomAction> { new GitFetchAction() };
     }

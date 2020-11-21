@@ -1,32 +1,37 @@
 ﻿using Analogy.Interfaces;
-using Analogy.Interfaces.Factories;
 using Analogy.LogViewer.GitHistory.Managers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Analogy.LogViewer.GitHistory.Data_Types;
 
 namespace Analogy.LogViewer.GitHistory.IAnalogy
 {
-    public class GitHistoryDataProviderFactory : IAnalogyDataProvidersFactory
+    public class GitHistoryDataProviderFactory : Template.DataProvidersFactory
     {
-        public Guid FactoryId { get; set; } = GitHistoryFactory.Id;
-        public string Title { get; set; } = "Repositories History";
+        public override Guid FactoryId { get; set; } = GitHistoryPrimaryFactory.Id;
+        public override string Title { get; set; } = "Repositories History";
 
-        public IEnumerable<IAnalogyDataProvider> DataProviders
+        public override IEnumerable<IAnalogyDataProvider> DataProviders
         {
-            get
-            {
-                foreach (RepositorySetting rs in UserSettingsManager.UserSettings.RepositoriesSetting.Repositories)
-                {
-                    yield return new GitRepositoryLoader(rs, GitOperationType.History);
-                }
-            }
+            get => _dataProviders;
+            set => _dataProviders = value.ToList();
+        }
 
+
+        private List<IAnalogyDataProvider> _dataProviders;
+
+        public GitHistoryDataProviderFactory()
+        {
+            _dataProviders = UserSettingsManager.UserSettings.RepositoriesSetting.Repositories
+                .Select(rs => new GitRepositoryLoader(rs, GitOperationType.History)).Cast<IAnalogyDataProvider>()
+                .ToList();
         }
     }
+
     public class GitFetchDataProviderFactory
     {
-        public Guid FactoryId { get; } = GitHistoryFactory.Id;
+        public Guid FactoryId { get; } = GitHistoryPrimaryFactory.Id;
         public string Title => "Repositories Fetches";
 
         public IEnumerable<IAnalogyDataProvider> DataProviders

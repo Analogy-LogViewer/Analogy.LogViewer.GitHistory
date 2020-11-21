@@ -16,12 +16,16 @@ namespace Analogy.LogViewer.GitHistory
         public void AddRepository(RepositorySetting repository)
         {
             if (!Repositories.Contains(repository))
+            {
                 Repositories.Add(repository);
+            }
         }
         public void DeleteRepository(RepositorySetting repository)
         {
             if (Repositories.Contains(repository))
+            {
                 Repositories.Remove(repository);
+            }
         }
 
     }
@@ -48,17 +52,37 @@ namespace Analogy.LogViewer.GitHistory
 
         public bool Equals(RepositorySetting other)
         {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
             return RepositoryPath == other.RepositoryPath && NumberOfCommits == other.NumberOfCommits &&
                    HistoryDateTime.Equals(other.HistoryDateTime) && FetchType == other.FetchType;
         }
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+
             return Equals((RepositorySetting)obj);
         }
 

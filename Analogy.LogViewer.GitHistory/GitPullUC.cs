@@ -27,7 +27,10 @@ namespace Analogy.LogViewer.GitHistory
 
         private void BtnOperation_Click(object sender, EventArgs e)
         {
-            if (RepositorySetting == null) return;
+            if (RepositorySetting == null)
+            {
+                return;
+            }
 
             string logMessage = "";
             using (var repo = new Repository(RepositorySetting.RepositoryPath))
@@ -52,7 +55,11 @@ namespace Analogy.LogViewer.GitHistory
 
         private void GitPullUC_Load(object sender, EventArgs e)
         {
-            if (DesignMode) return;
+            if (DesignMode)
+            {
+                return;
+            }
+
             RefreshList();
         }
         private void RefreshList()

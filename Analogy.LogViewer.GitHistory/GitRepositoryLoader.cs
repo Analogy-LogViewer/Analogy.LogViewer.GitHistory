@@ -10,19 +10,17 @@ using Analogy.LogViewer.GitHistory.Data_Types;
 
 namespace Analogy.LogViewer.GitHistory
 {
-    public class GitRepositoryLoader : IAnalogyRealTimeDataProvider
+    public class GitRepositoryLoader : Template.OnlineDataProvider
     {
-        public Guid Id { get; set; } = new Guid("3CD8B586-5AB0-4C84-A1F8-0F093F846A5D");
-        public Image ConnectedLargeImage { get; set; } = null;
-        public Image ConnectedSmallImage { get; set; } = null;
-        public Image DisconnectedLargeImage { get; set; } = null;
-        public Image DisconnectedSmallImage { get; set; } = null;
-        public string OptionalTitle { get; set; }
-        public Task<bool> CanStartReceiving() => Task.FromResult(true);
-        public IAnalogyOfflineDataProvider FileOperationsHandler { get; } = null;
-        public event EventHandler<AnalogyDataSourceDisconnectedArgs> OnDisconnected;
-        public event EventHandler<AnalogyLogMessageArgs> OnMessageReady;
-        public event EventHandler<AnalogyLogMessagesArgs> OnManyMessagesReady;
+        public override Guid Id { get; set; } = new Guid("3CD8B586-5AB0-4C84-A1F8-0F093F846A5D");
+        public  override Image? ConnectedLargeImage { get; set; } = null;
+        public override Image? ConnectedSmallImage { get; set; } = null;
+        public override Image? DisconnectedLargeImage { get; set; } = null;
+        public override Image? DisconnectedSmallImage { get; set; } = null;
+        public override string OptionalTitle { get; set; }
+        public override Task<bool> CanStartReceiving() => Task.FromResult(true);
+        public override IAnalogyOfflineDataProvider FileOperationsHandler { get; set; } = null;
+
         private RepositorySetting RepositorySetting { get; }
         private GitOperationType Operation { get; }
         public bool UseCustomColors { get; set; } = false;
@@ -38,18 +36,13 @@ namespace Analogy.LogViewer.GitHistory
             OptionalTitle = RepositorySetting.RepositoryPath;
         }
 
-        public Task InitializeDataProviderAsync(IAnalogyLogger logger)
+        public override async Task InitializeDataProviderAsync(IAnalogyLogger logger)
         {
+            await base.InitializeDataProviderAsync(logger);
             LogManager.Instance.SetLogger(logger);
-            return Task.CompletedTask;
         }
-
-        public void MessageOpened(AnalogyLogMessage message)
-        {
-            //noop
-        }
-
-        public Task StartReceiving()
+        
+        public override Task StartReceiving()
         {
             try
             {
@@ -80,7 +73,7 @@ namespace Analogy.LogViewer.GitHistory
                     Level = AnalogyLogLevel.Error,
                     Class = AnalogyLogClass.General
                 };
-                OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", Id));
+                MessageReady(this, new AnalogyLogMessageArgs(m, "", "", Id));
 
             }
             return Task.CompletedTask;
@@ -93,11 +86,17 @@ namespace Analogy.LogViewer.GitHistory
                 var RFC2822Format = "ddd dd MMM HH:mm:ss yyyy K";
                 IEnumerable<Commit> commits;
                 if (RepositorySetting.FetchType == FetchType.Count)
+                {
                     commits = repo.Commits.Take(RepositorySetting.NumberOfCommits);
+                }
                 else if (RepositorySetting.FetchType == FetchType.DateTime)
+                {
                     commits = repo.Commits.Where(c => c.Author.When >= RepositorySetting.HistoryDateTime);
+                }
                 else
+                {
                     commits = new List<Commit>(0);
+                }
 
                 foreach (Commit c in commits)
                 {
@@ -115,7 +114,7 @@ namespace Analogy.LogViewer.GitHistory
                         Level = (c.Committer.Name == c.Author.Name) ? AnalogyLogLevel.Information : AnalogyLogLevel.Warning,
                         Class = AnalogyLogClass.General
                     };
-                    OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", Id));
+                    MessageReady(this, new AnalogyLogMessageArgs(m, "", "", Id));
 
                 }
             }
@@ -149,12 +148,12 @@ namespace Analogy.LogViewer.GitHistory
                         Level = AnalogyLogLevel.Information,
                         Class = AnalogyLogClass.General
                     };
-                    OnMessageReady?.Invoke(this, new AnalogyLogMessageArgs(m, "", "", Id));
+                    MessageReady(this, new AnalogyLogMessageArgs(m, "", "", Id));
 
                 }
             }
         }
-        public Task StopReceiving() => Task.CompletedTask;
+        public override Task StopReceiving() => Task.CompletedTask;
 
     }
 }
