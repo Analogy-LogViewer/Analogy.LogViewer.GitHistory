@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Analogy.Interfaces;
+using Analogy.Interfaces.DataTypes;
 
 namespace Analogy.LogViewer.GitHistory.GitActions
 {
@@ -22,5 +23,6 @@ namespace Analogy.LogViewer.GitHistory.GitActions
 
         public string Title { get; set; } = "Git Fetch";
         public AnalogyCustomActionType Type { get; } = AnalogyCustomActionType.BelongsToProvider;
+        public AnalogyToolTip? ToolTip { get; set; }
     }
 }
