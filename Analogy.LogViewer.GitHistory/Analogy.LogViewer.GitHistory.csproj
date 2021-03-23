@@ -11,7 +11,7 @@
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 		<Authors>Lior Banai</Authors>
 		<Description>Extension for Analogy Log Viewer that shows Git Histroy in searchable UI</Description>
-		<Copyright>Lior Banai @ 2020</Copyright>
+		<Copyright>Lior Banai @ 2020-2021</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/Analogy-LogViewer/Analogy.LogViewer.GitHistory</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Analogy-LogViewer/Analogy.LogViewer.GitHistory</RepositoryUrl>
@@ -19,7 +19,7 @@
 		<PackageReleaseNotes>Aligh with latest API</PackageReleaseNotes>
 		<PackageIcon>Analogy.GitHistoryBanner.png</PackageIcon>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Version>1.4.1.1</Version>
+		<Version>1.4.2</Version>
 		<Company>Analogy.LogViewer</Company>
 		<Nullable>enable</Nullable>
 		<LangVersion>8.0</LangVersion>
@@ -28,8 +28,8 @@
 
 	<ItemGroup>
 	
-		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="2.11.0" />
-		<PackageReference Include="Analogy.LogViewer.Template" Version="1.8.1.3" />
+		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="2.12.1" />
+		<PackageReference Include="Analogy.LogViewer.Template" Version="1.8.3.1" />
 		<PackageReference Include="LibGit2Sharp" Version="0.26.2" />
 		<PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.0.0">
 			<PrivateAssets>all</PrivateAssets>
