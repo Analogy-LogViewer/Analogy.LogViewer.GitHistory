@@ -23,11 +23,11 @@ namespace Analogy.LogViewer.GitHistory
 
         private RepositorySetting RepositorySetting { get; }
         private GitOperationType Operation { get; }
-        public bool UseCustomColors { get; set; } = false;
-        public IEnumerable<(string originalHeader, string replacementHeader)> GetReplacementHeaders()
+        public override bool UseCustomColors { get; set; } = false;
+        public override IEnumerable<(string originalHeader, string replacementHeader)> GetReplacementHeaders()
             => new List<(string originalHeader, string replacementHeader)> { ("Source", "Branch"), ("Process/Module", "Local Path") };
 
-        public (Color backgroundColor, Color foregroundColor) GetColorForMessage(IAnalogyLogMessage logMessage)
+        public override (Color backgroundColor, Color foregroundColor) GetColorForMessage(IAnalogyLogMessage logMessage)
             => (Color.Empty, Color.Empty);
         public GitRepositoryLoader(RepositorySetting rs, GitOperationType operation)
         {
@@ -36,10 +36,11 @@ namespace Analogy.LogViewer.GitHistory
             OptionalTitle = RepositorySetting.RepositoryPath;
         }
 
-        public override async Task InitializeDataProviderAsync(IAnalogyLogger logger)
+        public override Task InitializeDataProvider(IAnalogyLogger logger)
         {
-            await base.InitializeDataProviderAsync(logger);
             LogManager.Instance.SetLogger(logger);
+            return base.InitializeDataProvider(logger);
+           
         }
         
         public override Task StartReceiving()
