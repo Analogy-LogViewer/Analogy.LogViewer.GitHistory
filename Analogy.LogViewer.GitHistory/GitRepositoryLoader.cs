@@ -19,6 +19,7 @@ namespace Analogy.LogViewer.GitHistory
         public override Image? DisconnectedSmallImage { get; set; } = null;
         public override string OptionalTitle { get; set; }
         public override Task<bool> CanStartReceiving() => Task.FromResult(true);
+        
         public override IAnalogyOfflineDataProvider FileOperationsHandler { get; set; } = null;
 
         private RepositorySetting RepositorySetting { get; }
@@ -79,6 +80,8 @@ namespace Analogy.LogViewer.GitHistory
             }
             return Task.CompletedTask;
         }
+
+        public override Task ShutDown() => Task.CompletedTask;
 
         private void GetGitHistory()
         {
