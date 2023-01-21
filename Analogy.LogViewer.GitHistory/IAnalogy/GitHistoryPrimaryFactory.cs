@@ -15,6 +15,8 @@ namespace Analogy.LogViewer.GitHistory.IAnalogy
         public override Image? LargeImage { get; set; } = Resources.Git_icon_32x32;
         public override IEnumerable<IAnalogyChangeLog> ChangeLog { get; set; } = new List<AnalogyChangeLog>
         {
+            
+            new AnalogyChangeLog("[Git provider] Add list of tags #140",AnalogChangeLogType.Improvement, "Lior Banai",new DateTime(2023, 01, 21)),
             new AnalogyChangeLog("Initial version",AnalogChangeLogType.None, "Lior Banai",new DateTime(2020, 04, 02))
         };
         public override IEnumerable<string> Contributors { get; set; } = new List<string> { "Lior Banai" };

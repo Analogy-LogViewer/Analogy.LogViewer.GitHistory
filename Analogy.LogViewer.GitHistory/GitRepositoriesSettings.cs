@@ -28,7 +28,7 @@ namespace Analogy.LogViewer.GitHistory
             {
                 FetchType f = rbCount.Checked ? FetchType.Count : FetchType.DateTime;
                 RepositorySetting rs = new RepositorySetting(txtRepository.Text, (int)nudCommits.Value,
-                    dateTimePicker1.Value, f);
+                    (int)nudTags.Value, dateTimePicker1.Value, f);
                 UserSettingsManager.UserSettings.RepositoriesSetting.AddRepository(rs);
                 RefreshList();
             }
