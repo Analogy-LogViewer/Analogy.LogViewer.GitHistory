@@ -117,10 +117,10 @@ namespace Analogy.LogViewer.GitHistory
                             $"{(c.Parents.Any() ? $"{c.Message} Merge: {string.Join(" ", c.Parents.Select(p => p.Id.Sha.Substring(0, 7)).ToArray())}" : c.Message)}" + $" (Committer: {c.Committer.Name} [{c.Committer.Email}], Author: {c.Author.Name} [{c.Author.Email}])",
                         User = $"Committer: {c.Committer.Name} ({c.Committer.Email}). Author: {c.Author.Name} ({c.Author.Email})",
                         FileName = c.Id.Sha,
-                        Category = c.Tree.FirstOrDefault()?.Name,
                         Level = (c.Committer.Name == c.Author.Name) ? AnalogyLogLevel.Information : AnalogyLogLevel.Warning,
                         Class = AnalogyLogClass.General
                     };
+                    m.AddOrReplaceAdditionalProperty("Category", c.Tree.FirstOrDefault()?.Name);
                     MessageReady(this, new AnalogyLogMessageArgs(m, "", "", Id));
                 }
                 foreach (Tag t in tags)
@@ -135,10 +135,11 @@ namespace Analogy.LogViewer.GitHistory
                             $"TAG: {t.FriendlyName}. {(c.Parents.Any() ? $"{c.Message} Merge: {string.Join(" ", c.Parents.Select(p => p.Id.Sha.Substring(0, 7)).ToArray())}" : c.Message)}" + $" (Committer: {c.Committer.Name} [{c.Committer.Email}], Author: {c.Author.Name} [{c.Author.Email}])",
                         User = $"Committer: {c.Committer.Name} ({c.Committer.Email}). Author: {c.Author.Name} ({c.Author.Email})",
                         FileName = c.Id.Sha,
-                        Category = "TAG",
                         Level = AnalogyLogLevel.Warning,
                         Class = AnalogyLogClass.General
                     };
+                    m.AddOrReplaceAdditionalProperty("Category", "TAG");
+
                     MessageReady(this, new AnalogyLogMessageArgs(m, "", "", Id));
 
                 }
@@ -166,13 +167,13 @@ namespace Analogy.LogViewer.GitHistory
                         Module = RepositorySetting.RepositoryPath,
                         Source = c.Id.Sha,
                         Text = $"Incoming: {c.Committer.Name}:{c.Message}",
-                        User =
-                            $"Committer: {c.Committer.Name} ({c.Committer.Email}). Author: {c.Author.Name} ({c.Author.Email})",
+                        User = $"Committer: {c.Committer.Name} ({c.Committer.Email}). Author: {c.Author.Name} ({c.Author.Email})",
                         FileName = c.Id.Sha,
-                        Category = c.Tree.FirstOrDefault()?.Name,
                         Level = AnalogyLogLevel.Information,
                         Class = AnalogyLogClass.General
                     };
+                    m.AddOrReplaceAdditionalProperty("Category", c.Tree.FirstOrDefault()?.Name);
+
                     MessageReady(this, new AnalogyLogMessageArgs(m, "", "", Id));
 
                 }
