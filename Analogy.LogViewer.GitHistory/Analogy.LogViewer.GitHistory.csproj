@@ -19,7 +19,7 @@
 		<PackageReleaseNotes>Aligh with latest API</PackageReleaseNotes>
 		<PackageIcon>Analogy.GitHistoryBanner.png</PackageIcon>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Version>3.8.1</Version>
+		<Version>3.8.2</Version>
 		<Company>Analogy.LogViewer</Company>
 		<Nullable>enable</Nullable>
 		<LangVersion>latest</LangVersion>
@@ -29,7 +29,7 @@
 	<ItemGroup>
 	
 		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="3.8.0" />
-		<PackageReference Include="Analogy.LogViewer.Template" Version="3.8.0" />
+		<PackageReference Include="Analogy.LogViewer.Template" Version="3.8.2" />
 		<PackageReference Include="LibGit2Sharp" Version="0.26.2" />
 		<PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.1.1">
 			<PrivateAssets>all</PrivateAssets>
