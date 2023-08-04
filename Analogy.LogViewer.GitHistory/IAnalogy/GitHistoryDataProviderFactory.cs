@@ -3,7 +3,7 @@ using Analogy.LogViewer.GitHistory.Managers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Analogy.LogViewer.GitHistory.Data_Types;
+using Analogy.LogViewer.GitHistory.DataTypes;
 
 namespace Analogy.LogViewer.GitHistory.IAnalogy
 {

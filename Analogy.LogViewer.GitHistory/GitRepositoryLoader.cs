@@ -1,30 +1,31 @@
 ﻿using Analogy.Interfaces;
-using Analogy.LogViewer.GitHistory.Managers;
 using LibGit2Sharp;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
-using Analogy.LogViewer.GitHistory.Data_Types;
+using Analogy.LogViewer.GitHistory.DataTypes;
+using Analogy.LogViewer.Template.Managers;
+using Microsoft.Extensions.Logging;
 
 namespace Analogy.LogViewer.GitHistory
 {
     public class GitRepositoryLoader : Template.OnlineDataProvider
     {
         public override Guid Id { get; set; } = new Guid("3CD8B586-5AB0-4C84-A1F8-0F093F846A5D");
-        public override Image? ConnectedLargeImage { get; set; } = null;
-        public override Image? ConnectedSmallImage { get; set; } = null;
-        public override Image? DisconnectedLargeImage { get; set; } = null;
-        public override Image? DisconnectedSmallImage { get; set; } = null;
+        public override Image? ConnectedLargeImage { get; set; }
+        public override Image? ConnectedSmallImage { get; set; }
+        public override Image? DisconnectedLargeImage { get; set; }
+        public override Image? DisconnectedSmallImage { get; set; }
         public override string OptionalTitle { get; set; }
         public override Task<bool> CanStartReceiving() => Task.FromResult(true);
 
-        public override IAnalogyOfflineDataProvider FileOperationsHandler { get; set; } = null;
+        public override IAnalogyOfflineDataProvider FileOperationsHandler { get; set; }
 
         private RepositorySetting RepositorySetting { get; }
         private GitOperationType Operation { get; }
-        public override bool UseCustomColors { get; set; } = false;
+        public override bool UseCustomColors { get; set; }
         public override IEnumerable<(string originalHeader, string replacementHeader)> GetReplacementHeaders()
             => new List<(string originalHeader, string replacementHeader)> { ("Source", "Branch"), ("Module", "Local Path") };
 
@@ -37,9 +38,8 @@ namespace Analogy.LogViewer.GitHistory
             OptionalTitle = RepositorySetting.RepositoryPath;
         }
 
-        public override Task InitializeDataProvider(IAnalogyLogger logger)
+        public override Task InitializeDataProvider(ILogger logger)
         {
-            LogManager.Instance.SetLogger(logger);
             return base.InitializeDataProvider(logger);
 
         }
@@ -66,7 +66,7 @@ namespace Analogy.LogViewer.GitHistory
             }
             catch (Exception e)
             {
-                LogManager.Instance.LogError($@"Error reading {RepositorySetting.RepositoryPath}: {e}", nameof(StartReceiving));
+                LogManager.Instance.LogError(e,$@"Error reading {RepositorySetting.RepositoryPath}: {e}", nameof(StartReceiving));
                 AnalogyLogMessage m = new AnalogyLogMessage
                 {
                     Date = DateTime.Now,

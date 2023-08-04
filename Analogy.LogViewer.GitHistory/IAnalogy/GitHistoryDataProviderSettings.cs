@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Analogy.Interfaces;
 using Analogy.LogViewer.GitHistory.Managers;
+using Microsoft.Extensions.Logging;
 
 namespace Analogy.LogViewer.GitHistory.IAnalogy
 {
@@ -17,7 +18,7 @@ namespace Analogy.LogViewer.GitHistory.IAnalogy
         public override Guid FactoryId { get; set; } = GitHistoryPrimaryFactory.Id;
         public override Guid Id { get; set; } = new Guid("AEE6AA94-A0B6-4313-8C65-D81943B542DB");
 
-        public override void CreateUserControl(IAnalogyLogger logger)
+        public override void CreateUserControl(ILogger logger)
         {
             DataProviderSettings = new GitRepositoriesSettings();
         }

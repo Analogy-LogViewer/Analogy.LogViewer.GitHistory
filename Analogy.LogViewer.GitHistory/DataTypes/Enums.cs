@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Analogy.LogViewer.GitHistory.Data_Types
+namespace Analogy.LogViewer.GitHistory.DataTypes
 {
     public enum GitOperationType
     { 

@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Analogy.LogViewer.Template.Managers;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.IO;
 
@@ -24,7 +26,7 @@ namespace Analogy.LogViewer.GitHistory.Managers
                 }
                 catch (Exception ex)
                 {
-                    LogManager.Instance.LogCritical($"Unable to read file {RepositoriesSettingFile}: {ex}","");
+                    LogManager.Instance.LogCritical(ex, $"Unable to read file {RepositoriesSettingFile}: {ex}","");
                 }
             }
         }
