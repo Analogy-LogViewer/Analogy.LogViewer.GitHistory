@@ -30,7 +30,7 @@
 	<ItemGroup>
 	
 		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="5.0.0" />
-		<PackageReference Include="Analogy.LogViewer.Template" Version="5.0.0" />
+		<PackageReference Include="Analogy.LogViewer.Template" Version="5.0.2" />
 		<PackageReference Include="LibGit2Sharp" Version="0.26.2" />
 		<PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.1.1">
 			<PrivateAssets>all</PrivateAssets>
