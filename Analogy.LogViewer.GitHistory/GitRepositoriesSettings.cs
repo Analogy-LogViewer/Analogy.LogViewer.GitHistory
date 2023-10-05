@@ -58,5 +58,10 @@ namespace Analogy.LogViewer.GitHistory
                 RefreshList();
             }
         }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            UserSettingsManager.UserSettings.Save();
+        }
     }
 }

@@ -28,215 +28,202 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtRepository = new System.Windows.Forms.TextBox();
-            this.lblPath = new System.Windows.Forms.Label();
-            this.rbCount = new System.Windows.Forms.RadioButton();
-            this.rbDate = new System.Windows.Forms.RadioButton();
-            this.nudCommits = new System.Windows.Forms.NumericUpDown();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.lstRepositores = new System.Windows.Forms.ListBox();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnBrowser = new System.Windows.Forms.Button();
-            this.BtnDelete = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.nudTags = new System.Windows.Forms.NumericUpDown();
-            this.lblCommitsCount = new System.Windows.Forms.Label();
-            this.lblTagsCount = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCommits)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTags)).BeginInit();
-            this.SuspendLayout();
+            txtRepository = new System.Windows.Forms.TextBox();
+            lblPath = new System.Windows.Forms.Label();
+            rbCount = new System.Windows.Forms.RadioButton();
+            rbDate = new System.Windows.Forms.RadioButton();
+            nudCommits = new System.Windows.Forms.NumericUpDown();
+            dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            lstRepositores = new System.Windows.Forms.ListBox();
+            btnAdd = new System.Windows.Forms.Button();
+            btnBrowser = new System.Windows.Forms.Button();
+            BtnDelete = new System.Windows.Forms.Button();
+            label1 = new System.Windows.Forms.Label();
+            nudTags = new System.Windows.Forms.NumericUpDown();
+            lblCommitsCount = new System.Windows.Forms.Label();
+            lblTagsCount = new System.Windows.Forms.Label();
+            btnSave = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)nudCommits).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudTags).BeginInit();
+            SuspendLayout();
             // 
             // txtRepository
             // 
-            this.txtRepository.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRepository.Location = new System.Drawing.Point(191, 3);
-            this.txtRepository.Name = "txtRepository";
-            this.txtRepository.Size = new System.Drawing.Size(341, 26);
-            this.txtRepository.TabIndex = 14;
+            txtRepository.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            txtRepository.Location = new System.Drawing.Point(191, 3);
+            txtRepository.Name = "txtRepository";
+            txtRepository.Size = new System.Drawing.Size(341, 26);
+            txtRepository.TabIndex = 14;
             // 
             // lblPath
             // 
-            this.lblPath.AutoSize = true;
-            this.lblPath.Location = new System.Drawing.Point(22, 6);
-            this.lblPath.Name = "lblPath";
-            this.lblPath.Size = new System.Drawing.Size(160, 18);
-            this.lblPath.TabIndex = 13;
-            this.lblPath.Text = "Repository Path on disk";
+            lblPath.AutoSize = true;
+            lblPath.Location = new System.Drawing.Point(22, 6);
+            lblPath.Name = "lblPath";
+            lblPath.Size = new System.Drawing.Size(160, 18);
+            lblPath.TabIndex = 13;
+            lblPath.Text = "Repository Path on disk";
             // 
             // rbCount
             // 
-            this.rbCount.AutoSize = true;
-            this.rbCount.Checked = true;
-            this.rbCount.Location = new System.Drawing.Point(25, 35);
-            this.rbCount.Name = "rbCount";
-            this.rbCount.Size = new System.Drawing.Size(116, 22);
-            this.rbCount.TabIndex = 19;
-            this.rbCount.TabStop = true;
-            this.rbCount.Text = "Items to pull:";
-            this.rbCount.UseVisualStyleBackColor = true;
+            rbCount.AutoSize = true;
+            rbCount.Checked = true;
+            rbCount.Location = new System.Drawing.Point(25, 35);
+            rbCount.Name = "rbCount";
+            rbCount.Size = new System.Drawing.Size(116, 22);
+            rbCount.TabIndex = 19;
+            rbCount.TabStop = true;
+            rbCount.Text = "Items to pull:";
+            rbCount.UseVisualStyleBackColor = true;
             // 
             // rbDate
             // 
-            this.rbDate.AutoSize = true;
-            this.rbDate.Location = new System.Drawing.Point(25, 104);
-            this.rbDate.Name = "rbDate";
-            this.rbDate.Size = new System.Drawing.Size(160, 22);
-            this.rbDate.TabIndex = 20;
-            this.rbDate.Text = "Up to date to fetch:";
-            this.rbDate.UseVisualStyleBackColor = true;
+            rbDate.AutoSize = true;
+            rbDate.Location = new System.Drawing.Point(25, 104);
+            rbDate.Name = "rbDate";
+            rbDate.Size = new System.Drawing.Size(160, 22);
+            rbDate.TabIndex = 20;
+            rbDate.Text = "Up to date to fetch:";
+            rbDate.UseVisualStyleBackColor = true;
             // 
             // nudCommits
             // 
-            this.nudCommits.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.nudCommits.Location = new System.Drawing.Point(353, 37);
-            this.nudCommits.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.nudCommits.Name = "nudCommits";
-            this.nudCommits.Size = new System.Drawing.Size(228, 26);
-            this.nudCommits.TabIndex = 21;
-            this.nudCommits.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
+            nudCommits.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            nudCommits.Location = new System.Drawing.Point(353, 37);
+            nudCommits.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+            nudCommits.Name = "nudCommits";
+            nudCommits.Size = new System.Drawing.Size(228, 26);
+            nudCommits.TabIndex = 21;
+            nudCommits.Value = new decimal(new int[] { 100, 0, 0, 0 });
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(191, 104);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(390, 26);
-            this.dateTimePicker1.TabIndex = 22;
+            dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            dateTimePicker1.Location = new System.Drawing.Point(191, 104);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new System.Drawing.Size(390, 26);
+            dateTimePicker1.TabIndex = 22;
             // 
             // lstRepositores
             // 
-            this.lstRepositores.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstRepositores.FormattingEnabled = true;
-            this.lstRepositores.ItemHeight = 18;
-            this.lstRepositores.Location = new System.Drawing.Point(11, 144);
-            this.lstRepositores.Name = "lstRepositores";
-            this.lstRepositores.Size = new System.Drawing.Size(598, 202);
-            this.lstRepositores.TabIndex = 23;
+            lstRepositores.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lstRepositores.FormattingEnabled = true;
+            lstRepositores.ItemHeight = 18;
+            lstRepositores.Location = new System.Drawing.Point(11, 144);
+            lstRepositores.Name = "lstRepositores";
+            lstRepositores.Size = new System.Drawing.Size(598, 184);
+            lstRepositores.TabIndex = 23;
             // 
             // btnAdd
             // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(598, 6);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 44);
-            this.btnAdd.TabIndex = 24;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnAdd.Location = new System.Drawing.Point(598, 6);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new System.Drawing.Size(75, 44);
+            btnAdd.TabIndex = 24;
+            btnAdd.Text = "Add";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // btnBrowser
             // 
-            this.btnBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowser.Location = new System.Drawing.Point(534, 3);
-            this.btnBrowser.Name = "btnBrowser";
-            this.btnBrowser.Size = new System.Drawing.Size(47, 26);
-            this.btnBrowser.TabIndex = 25;
-            this.btnBrowser.Text = "...";
-            this.btnBrowser.UseVisualStyleBackColor = true;
-            this.btnBrowser.Click += new System.EventHandler(this.btnBrowser_Click);
+            btnBrowser.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnBrowser.Location = new System.Drawing.Point(534, 3);
+            btnBrowser.Name = "btnBrowser";
+            btnBrowser.Size = new System.Drawing.Size(47, 26);
+            btnBrowser.TabIndex = 25;
+            btnBrowser.Text = "...";
+            btnBrowser.UseVisualStyleBackColor = true;
+            btnBrowser.Click += btnBrowser_Click;
             // 
             // BtnDelete
             // 
-            this.BtnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnDelete.Image = global::Analogy.LogViewer.GitHistory.Properties.Resources.Delete_16x16;
-            this.BtnDelete.Location = new System.Drawing.Point(615, 144);
-            this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.Size = new System.Drawing.Size(43, 34);
-            this.BtnDelete.TabIndex = 26;
-            this.BtnDelete.UseVisualStyleBackColor = true;
-            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
+            BtnDelete.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            BtnDelete.Image = Properties.Resources.Delete_16x16;
+            BtnDelete.Location = new System.Drawing.Point(615, 144);
+            BtnDelete.Name = "BtnDelete";
+            BtnDelete.Size = new System.Drawing.Size(43, 34);
+            BtnDelete.TabIndex = 26;
+            BtnDelete.UseVisualStyleBackColor = true;
+            BtnDelete.Click += BtnDelete_Click;
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(8, 349);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(665, 79);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "for changes to take effect (when adding/removing repository) please restart the a" +
-    "pplication";
+            label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            label1.ForeColor = System.Drawing.Color.Red;
+            label1.Location = new System.Drawing.Point(8, 331);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(665, 50);
+            label1.TabIndex = 27;
+            label1.Text = "for changes to take effect (when adding/removing repository) please restart the application";
             // 
             // nudTags
             // 
-            this.nudTags.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.nudTags.Location = new System.Drawing.Point(353, 72);
-            this.nudTags.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.nudTags.Name = "nudTags";
-            this.nudTags.Size = new System.Drawing.Size(228, 26);
-            this.nudTags.TabIndex = 29;
-            this.nudTags.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
+            nudTags.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            nudTags.Location = new System.Drawing.Point(353, 72);
+            nudTags.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+            nudTags.Name = "nudTags";
+            nudTags.Size = new System.Drawing.Size(228, 26);
+            nudTags.TabIndex = 29;
+            nudTags.Value = new decimal(new int[] { 100, 0, 0, 0 });
             // 
             // lblCommitsCount
             // 
-            this.lblCommitsCount.AutoSize = true;
-            this.lblCommitsCount.Location = new System.Drawing.Point(277, 39);
-            this.lblCommitsCount.Name = "lblCommitsCount";
-            this.lblCommitsCount.Size = new System.Drawing.Size(70, 18);
-            this.lblCommitsCount.TabIndex = 30;
-            this.lblCommitsCount.Text = "Commits:";
+            lblCommitsCount.AutoSize = true;
+            lblCommitsCount.Location = new System.Drawing.Point(277, 39);
+            lblCommitsCount.Name = "lblCommitsCount";
+            lblCommitsCount.Size = new System.Drawing.Size(70, 18);
+            lblCommitsCount.TabIndex = 30;
+            lblCommitsCount.Text = "Commits:";
             // 
             // lblTagsCount
             // 
-            this.lblTagsCount.AutoSize = true;
-            this.lblTagsCount.Location = new System.Drawing.Point(277, 74);
-            this.lblTagsCount.Name = "lblTagsCount";
-            this.lblTagsCount.Size = new System.Drawing.Size(46, 18);
-            this.lblTagsCount.TabIndex = 31;
-            this.lblTagsCount.Text = "Tags:";
+            lblTagsCount.AutoSize = true;
+            lblTagsCount.Location = new System.Drawing.Point(277, 74);
+            lblTagsCount.Name = "lblTagsCount";
+            lblTagsCount.Size = new System.Drawing.Size(46, 18);
+            lblTagsCount.TabIndex = 31;
+            lblTagsCount.Text = "Tags:";
+            // 
+            // btnSave
+            // 
+            btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            btnSave.Location = new System.Drawing.Point(598, 385);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new System.Drawing.Size(75, 44);
+            btnSave.TabIndex = 32;
+            btnSave.Text = "Save";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // GitRepositoriesSettings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lblTagsCount);
-            this.Controls.Add(this.lblCommitsCount);
-            this.Controls.Add(this.nudTags);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.BtnDelete);
-            this.Controls.Add(this.btnBrowser);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.lstRepositores);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.nudCommits);
-            this.Controls.Add(this.rbDate);
-            this.Controls.Add(this.rbCount);
-            this.Controls.Add(this.txtRepository);
-            this.Controls.Add(this.lblPath);
-            this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Name = "GitRepositoriesSettings";
-            this.Size = new System.Drawing.Size(676, 428);
-            this.Load += new System.EventHandler(this.GitRepositoriesSettings_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.nudCommits)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTags)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(btnSave);
+            Controls.Add(lblTagsCount);
+            Controls.Add(lblCommitsCount);
+            Controls.Add(nudTags);
+            Controls.Add(label1);
+            Controls.Add(BtnDelete);
+            Controls.Add(btnBrowser);
+            Controls.Add(btnAdd);
+            Controls.Add(lstRepositores);
+            Controls.Add(dateTimePicker1);
+            Controls.Add(nudCommits);
+            Controls.Add(rbDate);
+            Controls.Add(rbCount);
+            Controls.Add(txtRepository);
+            Controls.Add(lblPath);
+            Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            Name = "GitRepositoriesSettings";
+            Size = new System.Drawing.Size(676, 432);
+            Load += GitRepositoriesSettings_Load;
+            ((System.ComponentModel.ISupportInitialize)nudCommits).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudTags).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -255,5 +242,6 @@
         private System.Windows.Forms.NumericUpDown nudTags;
         private System.Windows.Forms.Label lblCommitsCount;
         private System.Windows.Forms.Label lblTagsCount;
+        private System.Windows.Forms.Button btnSave;
     }
 }

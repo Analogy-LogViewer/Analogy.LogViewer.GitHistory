@@ -11,7 +11,8 @@ namespace Analogy.LogViewer.GitHistory.Managers
         private static readonly Lazy<UserSettingsManager> _instance =
             new Lazy<UserSettingsManager>(() => new UserSettingsManager());
         public static UserSettingsManager UserSettings { get; set; } = _instance.Value;
-        private string RepositoriesSettingFile { get; } = "AnalogyGitHistory.Settings";
+        private string LocalSettingFileName { get; } = "AnalogyGitHistorySettings.json";
+        private string RepositoriesSettingFile => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Analogy.LogViewer", LocalSettingFileName);
         public RepositoriesSetting RepositoriesSetting { get; }
 
         public UserSettingsManager()
