@@ -1,9 +1,9 @@
 ﻿using Analogy.Interfaces;
+using Analogy.LogViewer.GitHistory.DataTypes;
 using Analogy.LogViewer.GitHistory.Managers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Analogy.LogViewer.GitHistory.DataTypes;
 
 namespace Analogy.LogViewer.GitHistory.IAnalogy
 {
@@ -17,7 +17,6 @@ namespace Analogy.LogViewer.GitHistory.IAnalogy
             get => _dataProviders;
             set => _dataProviders = value.ToList();
         }
-
 
         private List<IAnalogyDataProvider> _dataProviders;
 
@@ -43,7 +42,6 @@ namespace Analogy.LogViewer.GitHistory.IAnalogy
                     yield return new GitRepositoryLoader(rs, GitOperationType.Fetch);
                 }
             }
-
         }
     }
 }

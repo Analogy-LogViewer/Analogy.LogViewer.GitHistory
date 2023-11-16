@@ -38,7 +38,7 @@ namespace Analogy.LogViewer.GitHistory
         {
             using (FolderBrowserDialog folderDlg = new FolderBrowserDialog
             {
-                ShowNewFolderButton = false
+                ShowNewFolderButton = false,
             })
             {
                 // Show the FolderBrowserDialog.  

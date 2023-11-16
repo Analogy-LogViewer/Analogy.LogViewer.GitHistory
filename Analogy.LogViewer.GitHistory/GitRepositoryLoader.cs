@@ -1,13 +1,13 @@
 ﻿using Analogy.Interfaces;
+using Analogy.LogViewer.GitHistory.DataTypes;
+using Analogy.LogViewer.Template.Managers;
 using LibGit2Sharp;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
-using Analogy.LogViewer.GitHistory.DataTypes;
-using Analogy.LogViewer.Template.Managers;
-using Microsoft.Extensions.Logging;
 
 namespace Analogy.LogViewer.GitHistory
 {
@@ -26,10 +26,10 @@ namespace Analogy.LogViewer.GitHistory
         private RepositorySetting RepositorySetting { get; }
         private GitOperationType Operation { get; }
         public override bool UseCustomColors { get; set; }
-        public override IEnumerable<(string originalHeader, string replacementHeader)> GetReplacementHeaders()
-            => new List<(string originalHeader, string replacementHeader)> { ("Source", "Branch"), ("Module", "Local Path") };
+        public override IEnumerable<(string OriginalHeader, string ReplacementHeader)> GetReplacementHeaders()
+            => new List<(string OriginalHeader, string ReplacementHeader)> { ("Source", "Branch"), ("Module", "Local Path") };
 
-        public override (Color backgroundColor, Color foregroundColor) GetColorForMessage(IAnalogyLogMessage logMessage)
+        public override (Color BackgroundColor, Color ForegroundColor) GetColorForMessage(IAnalogyLogMessage logMessage)
             => (Color.Empty, Color.Empty);
         public GitRepositoryLoader(RepositorySetting rs, GitOperationType operation)
         {
@@ -41,7 +41,6 @@ namespace Analogy.LogViewer.GitHistory
         public override Task InitializeDataProvider(ILogger logger)
         {
             return base.InitializeDataProvider(logger);
-
         }
 
         public override Task StartReceiving()
@@ -66,17 +65,16 @@ namespace Analogy.LogViewer.GitHistory
             }
             catch (Exception e)
             {
-                LogManager.Instance.LogError(e,$@"Error reading {RepositorySetting.RepositoryPath}: {e}", nameof(StartReceiving));
+                LogManager.Instance.LogError(e, $@"Error reading {RepositorySetting.RepositoryPath}: {e}", nameof(StartReceiving));
                 AnalogyLogMessage m = new AnalogyLogMessage
                 {
                     Date = DateTime.Now,
                     Module = RepositorySetting.RepositoryPath,
                     Text = $"Error: {e}",
                     Level = AnalogyLogLevel.Error,
-                    Class = AnalogyLogClass.General
+                    Class = AnalogyLogClass.General,
                 };
                 MessageReady(this, new AnalogyLogMessageArgs(m, "", "", Id));
-
             }
             return Task.CompletedTask;
         }
@@ -118,7 +116,7 @@ namespace Analogy.LogViewer.GitHistory
                         User = $"Committer: {c.Committer.Name} ({c.Committer.Email}). Author: {c.Author.Name} ({c.Author.Email})",
                         FileName = c.Id.Sha,
                         Level = (c.Committer.Name == c.Author.Name) ? AnalogyLogLevel.Information : AnalogyLogLevel.Warning,
-                        Class = AnalogyLogClass.General
+                        Class = AnalogyLogClass.General,
                     };
                     m.AddOrReplaceAdditionalProperty("Category", c.Tree.FirstOrDefault()?.Name);
                     MessageReady(this, new AnalogyLogMessageArgs(m, "", "", Id));
@@ -136,12 +134,11 @@ namespace Analogy.LogViewer.GitHistory
                         User = $"Committer: {c.Committer.Name} ({c.Committer.Email}). Author: {c.Author.Name} ({c.Author.Email})",
                         FileName = c.Id.Sha,
                         Level = AnalogyLogLevel.Warning,
-                        Class = AnalogyLogClass.General
+                        Class = AnalogyLogClass.General,
                     };
                     m.AddOrReplaceAdditionalProperty("Category", "TAG");
 
                     MessageReady(this, new AnalogyLogMessageArgs(m, "", "", Id));
-
                 }
             }
         }
@@ -153,8 +150,6 @@ namespace Analogy.LogViewer.GitHistory
                 var remote = repo.Network.Remotes["origin"];
                 var refSpecs = remote.FetchRefSpecs.Select(x => x.Specification);
                 Commands.Fetch(repo, remote.Name, refSpecs, null, "");
-
-
                 var trackingBranch = repo.Head.TrackedBranch;
                 var commits = repo.Commits.QueryBy(new CommitFilter
                 { IncludeReachableFrom = trackingBranch.Tip.Id, ExcludeReachableFrom = repo.Head.Tip.Id });
@@ -170,16 +165,14 @@ namespace Analogy.LogViewer.GitHistory
                         User = $"Committer: {c.Committer.Name} ({c.Committer.Email}). Author: {c.Author.Name} ({c.Author.Email})",
                         FileName = c.Id.Sha,
                         Level = AnalogyLogLevel.Information,
-                        Class = AnalogyLogClass.General
+                        Class = AnalogyLogClass.General,
                     };
                     m.AddOrReplaceAdditionalProperty("Category", c.Tree.FirstOrDefault()?.Name);
 
                     MessageReady(this, new AnalogyLogMessageArgs(m, "", "", Id));
-
                 }
             }
         }
         public override Task StopReceiving() => Task.CompletedTask;
-
     }
 }

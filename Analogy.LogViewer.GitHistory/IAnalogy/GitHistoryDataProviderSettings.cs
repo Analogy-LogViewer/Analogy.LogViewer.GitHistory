@@ -1,16 +1,15 @@
-﻿using System;
+﻿using Analogy.Interfaces;
+using Analogy.LogViewer.GitHistory.Managers;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Analogy.Interfaces;
-using Analogy.LogViewer.GitHistory.Managers;
-using Microsoft.Extensions.Logging;
 
 namespace Analogy.LogViewer.GitHistory.IAnalogy
 {
     public class GitHistoryDataProviderSettings : Template.TemplateUserSettingsFactory
     {
-
         public override string Title { get; set; } = "Git History settings";
         public override UserControl DataProviderSettings { get; set; }
         public override Image? SmallImage { get; set; }

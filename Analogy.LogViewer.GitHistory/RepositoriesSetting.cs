@@ -5,7 +5,6 @@ namespace Analogy.LogViewer.GitHistory
 {
     public class RepositoriesSetting
     {
-
         public List<RepositorySetting> Repositories { get; set; }
 
         public RepositoriesSetting()
@@ -27,7 +26,6 @@ namespace Analogy.LogViewer.GitHistory
                 Repositories.Remove(repository);
             }
         }
-
     }
 
     public class RepositorySetting : IEquatable<RepositorySetting>
@@ -41,9 +39,8 @@ namespace Analogy.LogViewer.GitHistory
 
         public RepositorySetting()
         {
-
         }
-        public RepositorySetting(string repositoryPath, int numberOfCommits,int numberOfTags, DateTime historyDateTime, FetchType fetchType)
+        public RepositorySetting(string repositoryPath, int numberOfCommits, int numberOfTags, DateTime historyDateTime, FetchType fetchType)
         {
             RepositoryPath = repositoryPath;
             NumberOfCommits = numberOfCommits;
@@ -65,7 +62,7 @@ namespace Analogy.LogViewer.GitHistory
             }
 
             return RepositoryPath == other.RepositoryPath && NumberOfCommits == other.NumberOfCommits &&
-                   NumberOfTags == other.NumberOfTags &&  HistoryDateTime.Equals(other.HistoryDateTime) && FetchType == other.FetchType;
+                   NumberOfTags == other.NumberOfTags && HistoryDateTime.Equals(other.HistoryDateTime) && FetchType == other.FetchType;
         }
 
         public override bool Equals(object obj)

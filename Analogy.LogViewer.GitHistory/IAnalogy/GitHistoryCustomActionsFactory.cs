@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Analogy.Interfaces;
+using Analogy.Interfaces.Factories;
+using Analogy.LogViewer.GitHistory.GitActions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Analogy.Interfaces;
-using Analogy.Interfaces.Factories;
-using Analogy.LogViewer.GitHistory.GitActions;
 
 namespace Analogy.LogViewer.GitHistory.IAnalogy
 {

@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 namespace Analogy.LogViewer.GitHistory.DataTypes
 {
     public enum GitOperationType
-    { 
+    {
         History,
         Fetch,
         Merge,
         Pull,
-
     }
-
 }

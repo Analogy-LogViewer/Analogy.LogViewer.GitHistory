@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Analogy.LogViewer.GitHistory.Managers;
+using LibGit2Sharp;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Analogy.LogViewer.GitHistory.Managers;
-using LibGit2Sharp;
 
 namespace Analogy.LogViewer.GitHistory
 {
@@ -38,11 +38,10 @@ namespace Analogy.LogViewer.GitHistory
                 var remote = repo.Network.Remotes["origin"];
                 var refSpecs = remote.FetchRefSpecs.Select(x => x.Specification);
                 Commands.Fetch(repo, remote.Name, refSpecs, null, logMessage);
-            
 
                 var trackingBranch = repo.Head.TrackedBranch;
                 var log = repo.Commits.QueryBy(new CommitFilter
-                    {IncludeReachableFrom = trackingBranch.Tip.Id, ExcludeReachableFrom = repo.Head.Tip.Id});
+                { IncludeReachableFrom = trackingBranch.Tip.Id, ExcludeReachableFrom = repo.Head.Tip.Id });
 
                 var count = log.Count(); //Counts the number of log entries
 
