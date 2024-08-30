@@ -25,7 +25,7 @@
 		<PackageReference Include="LibGit2Sharp" Version="0.30.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net471' ">
-		<PackageReference Include="LibGit2Sharp" Version="0.26.2" />
+		<PackageReference Include="LibGit2Sharp" Version="0.30.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Update="Properties\Resources.Designer.cs">
