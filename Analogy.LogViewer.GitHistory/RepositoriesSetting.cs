@@ -40,7 +40,7 @@ namespace Analogy.LogViewer.GitHistory
         public RepositorySetting()
         {
         }
-        public RepositorySetting(string repositoryPath, int numberOfCommits, int numberOfTags, DateTime historyDateTime, FetchType fetchType)
+        public RepositorySetting(string repositoryPath, int numberOfCommits, int numberOfTags, DateTimeOffset historyDateTime, FetchType fetchType)
         {
             RepositoryPath = repositoryPath;
             NumberOfCommits = numberOfCommits;

@@ -1,4 +1,5 @@
 ﻿using Analogy.Interfaces;
+using Analogy.Interfaces.DataTypes;
 using Analogy.LogViewer.GitHistory.DataTypes;
 using Analogy.LogViewer.Template.Managers;
 using LibGit2Sharp;
@@ -68,7 +69,7 @@ namespace Analogy.LogViewer.GitHistory
                 LogManager.Instance.LogError(e, $@"Error reading {RepositorySetting.RepositoryPath}: {e}", nameof(StartReceiving));
                 AnalogyLogMessage m = new AnalogyLogMessage
                 {
-                    Date = DateTime.Now,
+                    Date = DateTimeOffset.Now,
                     Module = RepositorySetting.RepositoryPath,
                     Text = $"Error: {e}",
                     Level = AnalogyLogLevel.Error,
@@ -108,7 +109,7 @@ namespace Analogy.LogViewer.GitHistory
                 {
                     AnalogyLogMessage m = new AnalogyLogMessage
                     {
-                        Date = c.Author.When.DateTime,
+                        Date = c.Author.When,
                         Module = RepositorySetting.RepositoryPath,
                         Source = repo.Head.FriendlyName,
                         Text =
@@ -126,7 +127,7 @@ namespace Analogy.LogViewer.GitHistory
                     var c = t.Target as Commit;
                     AnalogyLogMessage m = new AnalogyLogMessage
                     {
-                        Date = c.Author.When.DateTime,
+                        Date = c.Author.When,
                         Module = RepositorySetting.RepositoryPath,
                         Source = repo.Head.FriendlyName,
                         Text =
@@ -158,7 +159,7 @@ namespace Analogy.LogViewer.GitHistory
                 {
                     AnalogyLogMessage m = new AnalogyLogMessage
                     {
-                        Date = c.Author.When.DateTime,
+                        Date = c.Author.When,
                         Module = RepositorySetting.RepositoryPath,
                         Source = c.Id.Sha,
                         Text = $"Incoming: {c.Committer.Name}:{c.Message}",
