@@ -1,4 +1,5 @@
 ﻿using Analogy.Interfaces;
+using Analogy.Interfaces.WinForms;
 using Analogy.LogViewer.GitHistory.DataTypes;
 using Analogy.LogViewer.GitHistory.Managers;
 using System;
@@ -7,23 +8,23 @@ using System.Linq;
 
 namespace Analogy.LogViewer.GitHistory.IAnalogy
 {
-    public class GitHistoryDataProviderFactory : Template.DataProvidersFactory
+    public class GitHistoryDataProviderFactory : Template.DataProvidersFactoryWinForms
     {
         public override Guid FactoryId { get; set; } = GitHistoryPrimaryFactory.Id;
         public override string Title { get; set; } = "Repositories History";
 
-        public override IEnumerable<IAnalogyDataProvider> DataProviders
+        public override IEnumerable<IAnalogyDataProviderWinForms> DataProviders
         {
             get => _dataProviders;
             set => _dataProviders = value.ToList();
         }
 
-        private List<IAnalogyDataProvider> _dataProviders;
+        private List<IAnalogyDataProviderWinForms> _dataProviders;
 
         public GitHistoryDataProviderFactory()
         {
             _dataProviders = UserSettingsManager.UserSettings.RepositoriesSetting.Repositories
-                .Select(rs => new GitRepositoryLoader(rs, GitOperationType.History)).Cast<IAnalogyDataProvider>()
+                .Select(rs => new GitRepositoryLoader(rs, GitOperationType.History)).Cast<IAnalogyDataProviderWinForms>()
                 .ToList();
         }
     }

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Analogy.LogViewer.GitHistory.IAnalogy
 {
-    public class GitHistoryDataProviderSettings : Template.TemplateUserSettingsFactory
+    public class GitHistoryDataProviderSettings : Template.TemplateUserSettingsFactoryWinForms
     {
         public override string Title { get; set; } = "Git History settings";
         public override UserControl DataProviderSettings { get; set; }
