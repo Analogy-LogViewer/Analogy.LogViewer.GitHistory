@@ -2,30 +2,22 @@
 using Analogy.Interfaces.WinForms;
 using Analogy.LogViewer.GitHistory.DataTypes;
 using Analogy.LogViewer.GitHistory.Managers;
+using Analogy.LogViewer.Template.WinForms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Analogy.LogViewer.GitHistory.IAnalogy
 {
-    public class GitHistoryDataProviderFactory : Template.DataProvidersFactoryWinForms
+    public class GitHistoryDataProviderFactory : DataProvidersFactoryWinForms
     {
         public override Guid FactoryId { get; set; } = GitHistoryPrimaryFactory.Id;
         public override string Title { get; set; } = "Repositories History";
 
-        public override IEnumerable<IAnalogyDataProviderWinForms> DataProviders
-        {
-            get => _dataProviders;
-            set => _dataProviders = value.ToList();
-        }
-
-        private List<IAnalogyDataProviderWinForms> _dataProviders;
-
         public GitHistoryDataProviderFactory()
         {
-            _dataProviders = UserSettingsManager.UserSettings.RepositoriesSetting.Repositories
-                .Select(rs => new GitRepositoryLoader(rs, GitOperationType.History)).Cast<IAnalogyDataProviderWinForms>()
-                .ToList();
+            DataProviders = UserSettingsManager.UserSettings.RepositoriesSetting.Repositories
+                .Select(rs => new GitRepositoryLoader(rs, GitOperationType.History)).ToList();
         }
     }
 

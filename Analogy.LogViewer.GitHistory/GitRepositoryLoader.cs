@@ -3,6 +3,7 @@ using Analogy.Interfaces.DataTypes;
 using Analogy.Interfaces.WinForms;
 using Analogy.LogViewer.GitHistory.DataTypes;
 using Analogy.LogViewer.Template.Managers;
+using Analogy.LogViewer.Template.WinForms;
 using LibGit2Sharp;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Analogy.LogViewer.GitHistory
 {
-    public class GitRepositoryLoader : Template.OnlineDataProviderWinForms
+    public class GitRepositoryLoader : OnlineDataProviderWinForms
     {
         public override Guid Id { get; set; } = new Guid("3CD8B586-5AB0-4C84-A1F8-0F093F846A5D");
         public override Image? ConnectedLargeImage { get; set; }
@@ -22,8 +23,6 @@ namespace Analogy.LogViewer.GitHistory
         public override Image? DisconnectedSmallImage { get; set; }
         public override string OptionalTitle { get; set; }
         public override Task<bool> CanStartReceiving() => Task.FromResult(true);
-
-        public override IAnalogyOfflineDataProviderWinForms FileOperationsHandler { get; set; }
 
         private RepositorySetting RepositorySetting { get; }
         private GitOperationType Operation { get; }

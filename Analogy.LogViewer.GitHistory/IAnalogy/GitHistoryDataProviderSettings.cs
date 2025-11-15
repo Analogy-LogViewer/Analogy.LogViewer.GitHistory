@@ -1,5 +1,6 @@
 ﻿using Analogy.Interfaces;
 using Analogy.LogViewer.GitHistory.Managers;
+using Analogy.LogViewer.Template.WinForms;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Drawing;
@@ -8,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Analogy.LogViewer.GitHistory.IAnalogy
 {
-    public class GitHistoryDataProviderSettings : Template.TemplateUserSettingsFactoryWinForms
+    public class GitHistoryDataProviderSettings : TemplateUserSettingsFactoryWinForms
     {
         public override string Title { get; set; } = "Git History settings";
         public override UserControl DataProviderSettings { get; set; }
