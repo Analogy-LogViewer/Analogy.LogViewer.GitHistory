@@ -28,9 +28,9 @@ namespace Analogy.LogViewer.GitHistory.GitActions
         public string Title { get; set; } = "Git Fetch";
         public AnalogyCustomActionType Type { get; } = AnalogyCustomActionType.BelongsToProvider;
         public AnalogyToolTip? ToolTip { get; set; }
-        public Image? GetCustomActionSmallImage(Guid componentId) => SmallImage;
-        public Image? GetCustomActionLargeImage(Guid componentId) => LargeImage;
-        public Image? GetCustomActionToolTipSmallImage(Guid componentId) => SmallImage;
-        public Image? GetCustomActionToolTipLargeImage(Guid componentId) => LargeImage;
+        public Image? GetCustomActionSmallImage() => SmallImage;
+        public Image? GetCustomActionLargeImage() => LargeImage;
+        public Image? GetCustomActionToolTipSmallImage() => SmallImage;
+        public Image? GetCustomActionToolTipLargeImage() => LargeImage;
     }
 }
